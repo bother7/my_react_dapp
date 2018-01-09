@@ -9,7 +9,7 @@ import reducer from './reducers/index'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import { Web3Provider } from 'react-web3';
+// import { Web3Provider } from 'react-web3';
 
 
 const loggerMiddleware = createLogger()
@@ -19,10 +19,10 @@ let store = createStore(reducer,
       loggerMiddleware // neat middleware that logs actions
     ))
 
-ReactDOM.render(  <Provider store={store}><Web3Provider>
+ReactDOM.render(  <Provider store={store}>
     <Router>
       <Route path="/" component={App} />
     </Router>
-    </Web3Provider>
+
   </Provider>, document.getElementById('root'));
 registerServiceWorker();
