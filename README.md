@@ -5,3 +5,18 @@ redux
 ethereum test rpc - ganache-cli  
 solc  
 web3  
+
+```
+bother7:~/my_react_dapp$ node
+> Web3 = require('web3')
+> web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+> code = fs.readFileSync('./src/parcel.sol').toString()
+> solc = require('solc')
+> compiledCode = solc.compile(code)
+> abiDefinition = JSON.parse(compiledCode.contracts[':ParcelFactory'].interface)
+> sampleAccount = web3.eth.accounts.create()
+> parcelfactoryContract = new web3.eth.Contract(abiDefinition, sampleAccount.address)
+> byteCode = compiledCode.contracts[':ParcelFactory'].bytecode
+> deployedContract = parcelfactoryContract.deploy({from: sampleAccount.address, data: byteCode, gas: '4700000'})
+> contractInstance = parcelFactoryContract.at(deployedContract.address)
+```

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 // import PropTypes from 'prop-types';
 import Web3 from 'web3'
@@ -18,8 +17,13 @@ class App extends Component {
     this.web3Provider = new Web3.providers.HttpProvider("http://localhost:8545")
     this.web3 = new Web3(this.web3Provider)
     console.log(JSON.stringify(abi))
-    var ParcelContract = new this.web3.eth.Contract(JSON.parse(JSON.stringify(abi)))
-    console.log(ParcelContract)
+    this.parcelContract = new this.web3.eth.Contract(abi, '0x91a5F24bB759CEb6901a0a8dA56333200d2D31a9')
+    console.log(this.parcelContract)
+  }
+
+  createParcel = (name, id) => {
+    console.log(this.parcelContract.methods.createParcel(id, name))
+    this.parcelContract.methods.createParcel(id, name).send({from: '0x91a5F24bB759CEb6901a0a8dA56333200d2D31a9'})
   }
 
   render() {
@@ -29,7 +33,7 @@ class App extends Component {
     return (
       <div className="wrapper">
       <Nav />
-      <Route exact path='/' render={(props) => {return <Home />}}/>
+      <Route exact path='/'  render={(props) => {return <Home createParcel={this.createParcel} />}}/>
       <Route exact path='/my_parcels' render={(props) => {return <MyParcels />}}/>
       <Route exact path='/shop' render={(props) => {return <Shop />}}/>
       </div>

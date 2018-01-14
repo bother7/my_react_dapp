@@ -14,10 +14,15 @@ contract ParcelFactory {
     uint dna;
   }
 
-  function _createParcel(uint _dna, string _name) internal {
+  function createParcel(uint _dna, string _name) public {
     uint id = parcels.push(Parcel(_name, _dna)) - 1;
     parcelOwner[id] = msg.sender;
     newParcel(id, _name, _dna);
   }
+
+  /* function _randomParcel() internal {
+    uint id = parcels.push(Parcel(, _dna)) - 1;
+
+  } */
 
 }

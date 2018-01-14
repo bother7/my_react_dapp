@@ -7,11 +7,11 @@ export const abi = [
 				"type": "uint256"
 			}
 		],
-		"name": "parcelOwner",
+		"name": "region",
 		"outputs": [
 			{
 				"name": "",
-				"type": "address"
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -49,15 +49,33 @@ export const abi = [
 				"type": "uint256"
 			}
 		],
-		"name": "region",
+		"name": "parcelOwner",
 		"outputs": [
 			{
 				"name": "",
-				"type": "string"
+				"type": "address"
 			}
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_dna",
+				"type": "uint256"
+			},
+			{
+				"name": "_name",
+				"type": "string"
+			}
+		],
+		"name": "createParcel",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
