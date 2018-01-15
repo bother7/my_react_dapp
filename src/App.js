@@ -14,16 +14,25 @@ import Nav from './components/Nav'
 class App extends Component {
 
   componentDidMount ()  {
+
     this.web3Provider = new Web3.providers.HttpProvider("http://localhost:8545")
-    this.web3 = new Web3(this.web3Provider)
-    console.log(JSON.stringify(abi))
-    this.parcelContract = new this.web3.eth.Contract(abi, '0x91a5F24bB759CEb6901a0a8dA56333200d2D31a9')
+    if (typeof Web3.givenProvider !== 'undefined') {
+      this.web3 = new Web3(Web3.givenProvider)
+    } else {
+      this.web3 = new Web3(this.web3Provider)
+    }
+    this.accounts = this.web3.eth.accounts
+    this.parcelContract = new this.web3.eth.Contract(abi, '0x35ad230C81c45c77ABd8cDdEd8c75C30Bed28b87')
     console.log(this.parcelContract)
+    console.log(this.web3.eth.accounts)
   }
 
   createParcel = (name, id) => {
-    console.log(this.parcelContract.methods.createParcel(id, name))
-    this.parcelContract.methods.createParcel(id, name).send({from: '0x91a5F24bB759CEb6901a0a8dA56333200d2D31a9'})
+    console.log(this.accounts)
+    this.parcelContract.methods.createParcel(id, name).send({from:'0x35ad230C81c45c77ABd8cDdEd8c75C30Bed28b87' })
+    .then(receipt => {
+      console.log(this.parcelContract)
+      return console.log(receipt)})
   }
 
   render() {
