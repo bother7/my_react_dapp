@@ -21,15 +21,20 @@ class App extends Component {
     } else {
       this.web3 = new Web3(this.web3Provider)
     }
-    this.accounts = this.web3.eth.accounts
-    this.parcelContract = new this.web3.eth.Contract(abi, '0x35ad230C81c45c77ABd8cDdEd8c75C30Bed28b87')
+    console.log(this.web3)
+    this.metamaskAddress = this.web3.eth.accounts._provider.publicConfigStore._state.selectedAddress
+    this.parcelContract = new this.web3.eth.Contract(abi, this.metamaskAddress)
     console.log(this.parcelContract)
-    console.log(this.web3.eth.accounts)
+    this.parcelContract.getPastEvents().then(receipt => console.log(receipt))
+    console.log(this.eventlog)
+
+    this.parcelContract.methods.getParcels(2).call({from:this.metamaskAddress })
+    .then(receipt => console.log(receipt))
   }
 
   createParcel = (name, id) => {
     console.log(this.accounts)
-    this.parcelContract.methods.createParcel(id, name).send({from:'0x35ad230C81c45c77ABd8cDdEd8c75C30Bed28b87' })
+    this.parcelContract.methods.createParcel(id, name).send({from:this.metamaskAddress })
     .then(receipt => {
       console.log(this.parcelContract)
       return console.log(receipt)})

@@ -20,9 +20,7 @@ contract ParcelFactory {
     newParcel(id, _name, _dna);
   }
 
-  /* function _randomParcel() internal {
-    uint id = parcels.push(Parcel(, _dna)) - 1;
-
-  } */
-
+  function getParcels(uint id) external view returns (string name, uint dna){
+   return (parcels[id].name, parcels[id].dna);
+  }
 }

@@ -1,5 +1,46 @@
 export const abi = [
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_dna",
+				"type": "uint256"
+			},
+			{
+				"name": "_name",
+				"type": "string"
+			}
+		],
+		"name": "createParcel",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256"
+			}
+		],
+		"name": "getParcels",
+		"outputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "dna",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -7,11 +48,11 @@ export const abi = [
 				"type": "uint256"
 			}
 		],
-		"name": "region",
+		"name": "parcelOwner",
 		"outputs": [
 			{
 				"name": "",
-				"type": "string"
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -49,33 +90,15 @@ export const abi = [
 				"type": "uint256"
 			}
 		],
-		"name": "parcelOwner",
+		"name": "region",
 		"outputs": [
 			{
 				"name": "",
-				"type": "address"
+				"type": "string"
 			}
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_dna",
-				"type": "uint256"
-			},
-			{
-				"name": "_name",
-				"type": "string"
-			}
-		],
-		"name": "createParcel",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
